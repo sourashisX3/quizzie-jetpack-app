@@ -1,0 +1,12 @@
+bg-start-color - #ede6da
+bg-middle-color - #f8f4ee
+bg-end-color - #fdfbf9
+
+card-colors - [#ea4c37, #ffcb3d, #477b65]
+
+grey - #c5cbcd
+red - #f8686d
+blue - #b8dbe2
+green - #93cc7c
+yellow - #fcce40
+purple - #997cf5
