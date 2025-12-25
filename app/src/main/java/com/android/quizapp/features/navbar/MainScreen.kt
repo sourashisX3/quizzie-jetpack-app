@@ -16,43 +16,55 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.android.quizapp.core.navigation.Screen
 import com.android.quizapp.features.contest.ContestScreen
 import com.android.quizapp.features.home.presentation.screens.HomeScreen
 import com.android.quizapp.features.leaderboard.LeaderBoardScreen
-import com.android.quizapp.features.profile.screens.ProfileScreen
+import com.android.quizapp.features.profile.presentation.screens.EditProfileScreen
+import com.android.quizapp.features.profile.presentation.screens.ProfileScreen
 import com.android.quizapp.ui.theme.AppColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    // Local NavController
+    val mainNavController = rememberNavController()
+    val navBackStackEntry by mainNavController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    Box(modifier = Modifier.fillMaxSize().background(AppColor.backgroundBrush)) {
+    // Hide bottom bar
+    val showBottomBar = currentRoute in BottomNavItems.map { it.route }
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(AppColor.backgroundBrush)) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             containerColor = Color.Transparent,
             bottomBar = {
-                AppNavBar(
-                    modifier = Modifier,
-                    items = BottomNavItems,
-                    selectedRoute = currentRoute,
-                    onItemSelected = { item ->
-                        navController.navigate(item.route) {
-                            launchSingleTop = true
-                            restoreState = true
-                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                // Only show bottom bar on main tab screens
+                if (showBottomBar) {
+                    AppNavBar(
+                        modifier = Modifier,
+                        items = BottomNavItems,
+                        selectedRoute = currentRoute,
+                        onItemSelected = { item ->
+                            mainNavController.navigate(item.route) {
+                                launchSingleTop = true
+                                restoreState = true
+                                popUpTo(mainNavController.graph.startDestinationId) { saveState = true }
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         ) {
             NavHost(
-                navController = navController,
+                navController = mainNavController,
                 startDestination = BottomNavItems.first().route,
                 modifier = Modifier.fillMaxSize()
             ) {
+                // --- Bottom Tab Screens ---
                 composable(
                     route = BottomNavItems[0].route,
                     enterTransition = { fadeIn(animationSpec = tween(300)) },
@@ -79,7 +91,17 @@ fun MainScreen() {
                     enterTransition = { fadeIn(animationSpec = tween(300)) },
                     exitTransition = { fadeOut(animationSpec = tween(300)) }
                 ) {
-                    ProfileScreen()
+                    ProfileScreen(navController = mainNavController)
+                }
+
+                // --- Nested Detail Screens ---
+                // Edit Profile Screen
+                composable(
+                    route = Screen.EditProfile.route,
+                    enterTransition = { fadeIn(animationSpec = tween(300)) },
+                    exitTransition = { fadeOut(animationSpec = tween(300)) }
+                ) {
+                    EditProfileScreen(navController = mainNavController)
                 }
             }
         }

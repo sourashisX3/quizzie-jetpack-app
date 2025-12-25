@@ -29,6 +29,5 @@ fun InitNavGraph(
         composable(route = Screen.ForgetPassword.route) { ForgetPasswordScreen(navController = navController) }
         composable(route = Screen.Login.route) { LoginScreen(navController = navController) }
         composable(route = Screen.Main.route) { MainScreen() }
-
     }
 }
