@@ -27,7 +27,6 @@ import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.android.quizapp.R
 import com.android.quizapp.ui.theme.AppColor
 
 /**

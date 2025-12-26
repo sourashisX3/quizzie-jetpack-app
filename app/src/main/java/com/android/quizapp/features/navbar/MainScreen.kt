@@ -12,14 +12,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.android.quizapp.core.navigation.Screen
-import com.android.quizapp.features.contest.ContestScreen
+import com.android.quizapp.features.contest.presentation.screens.ContestScreen
+import com.android.quizapp.features.contest.presentation.screens.ContestSessionScreen
 import com.android.quizapp.features.home.presentation.screens.HomeScreen
-import com.android.quizapp.features.leaderboard.LeaderBoardScreen
+import com.android.quizapp.features.leaderboard.presentation.screens.LeaderBoardScreen
 import com.android.quizapp.features.profile.presentation.screens.EditProfileScreen
 import com.android.quizapp.features.profile.presentation.screens.ProfileScreen
 import com.android.quizapp.ui.theme.AppColor
@@ -77,7 +80,7 @@ fun MainScreen() {
                     enterTransition = { fadeIn(animationSpec = tween(300)) },
                     exitTransition = { fadeOut(animationSpec = tween(300)) }
                 ) {
-                    ContestScreen()
+                    ContestScreen(navController = mainNavController)
                 }
                 composable(
                     route = BottomNavItems[2].route,
@@ -102,6 +105,20 @@ fun MainScreen() {
                     exitTransition = { fadeOut(animationSpec = tween(300)) }
                 ) {
                     EditProfileScreen(navController = mainNavController)
+                }
+
+                // Contest Session Screen
+                composable(
+                    route = "contest_session/{contestId}",
+                    arguments = listOf(navArgument("contestId") { type = NavType.StringType }),
+                    enterTransition = { fadeIn(animationSpec = tween(300)) },
+                    exitTransition = { fadeOut(animationSpec = tween(300)) }
+                ) { backStackEntry ->
+                    val contestId = backStackEntry.arguments?.getString("contestId") ?: ""
+                    ContestSessionScreen(
+                        contestId = contestId,
+                        navController = mainNavController
+                    )
                 }
             }
         }

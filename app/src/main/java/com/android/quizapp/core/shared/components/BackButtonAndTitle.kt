@@ -19,7 +19,6 @@ import com.android.quizapp.ui.theme.AppColor
 
 @Composable
 fun BackButtonAndTitle(
-    modifier: Modifier = Modifier,
     title: String,
     onBackClick: () -> Unit
 ) {

@@ -48,6 +48,33 @@ val Typography = Typography(
         color = AppColor.black
     ),
 
+    headlineLarge = TextStyle(
+        fontFamily = Belanosima,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
+        letterSpacing = 0.sp,
+        color = AppColor.black
+    ),
+
+    headlineMedium = TextStyle(
+        fontFamily = Belanosima,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp,
+        color = AppColor.black
+    ),
+
+    headlineSmall = TextStyle(
+        fontFamily = Belanosima,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp,
+        color = AppColor.black
+    ),
+
     titleLarge = TextStyle(
         fontFamily = Belanosima,
         fontWeight = FontWeight.SemiBold,
@@ -63,6 +90,15 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp,
+        color = AppColor.black
+    ),
+
+    titleSmall = TextStyle(
+        fontFamily = Belanosima,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
         color = AppColor.black
     ),
 

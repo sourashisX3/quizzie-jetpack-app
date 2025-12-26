@@ -52,18 +52,25 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // --- Material Icons Extended ---
+    implementation(libs.androidx.material.icons.extended)
+
     // --- constraint layout ---
     implementation(libs.androidx.constraintlayout.compose)
 
     // --- hilt dependency ---
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     // --- Navigation compose ---
     implementation(libs.androidx.navigation.compose)
 
     // --- coil ---
     implementation(libs.coil.compose)
+
+    // --- gson ---
+    implementation(libs.gson)
 
     // --- testing dependencies ---
     testImplementation(libs.junit)
