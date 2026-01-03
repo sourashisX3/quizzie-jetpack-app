@@ -1,6 +1,7 @@
 package com.android.quizapp.features.leaderboard.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.android.quizapp.features.leaderboard.domain.entity.BadgeColor
 import com.android.quizapp.features.leaderboard.domain.entity.LeaderboardEntry
+import com.android.quizapp.ui.theme.AppColor
 
 /**
  * Composable for displaying a single leaderboard entry
@@ -80,6 +82,7 @@ fun LeaderboardEntryItem(
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape)
+                    .border(color = AppColor.brown, width = 1.dp, shape = CircleShape)
             )
 
             Spacer(modifier = Modifier.width(12.dp))
